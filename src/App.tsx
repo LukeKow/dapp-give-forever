@@ -28,7 +28,10 @@ function App() {
       ) as GiveForeverContract;
 
       setContract(contract);
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+
+      }, 2000);
 
       const awaitedUserAddress = await signer.getAddress();
       setUserAddress(awaitedUserAddress);
@@ -61,9 +64,10 @@ function App() {
           <br />
           <span className='description'>A perpetual vault for charity donation</span>
         </h1>
+
         <div className='button-container connect-button-container'>
           <button
-            className="button-secondary button full-width-button"
+            className={`button-secondary button full-width-button ${isLoading ? 'button-disabled' : ''}`}
             onClick={connect}
             disabled={isLoading}
           >
@@ -78,10 +82,22 @@ function App() {
             value={userAmount}
             onChange={(e) => setUserAmount(e.target.value)}
           />
-          <button className="button-primary button donate-button" onClick={donate}>Donate</button>
+          <button
+            className={`button-primary button donate-button ${isLoading ? 'button-disabled' : ''}`}
+            onClick={donate}
+            disabled={isLoading}
+          >
+            Donate
+          </button>
         </div>
         <div className='button-container withdraw-container'>
-          <button className="button-warn button full-width-button" onClick={withdraw}>Withdraw</button>
+          <button
+            className={`button-warn button full-width-button ${isLoading ? 'button-disabled' : ''}`}
+            onClick={withdraw}
+            disabled={isLoading}
+          >
+            Withdraw
+          </button>
         </div>
       </header>
     </div>
