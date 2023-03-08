@@ -148,21 +148,41 @@
 .input {
   border: none;
   border-bottom: 2px solid var(--primary-700);
-  margin-right: 1.313rem;
   background-color: var(--container-primary);
 }
 
-.connect-button-container {
+.connect-container {
   width: 100%;
+  display: flex;
+  align-items: center;
+}
+.connect-icon-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.icon-text {
+  margin: 0;
+  font-size: 0.5rem;
+}
+.icon-text-connected {
+  color: #53a548;
+}
+.icon-text-disconnected {
+  color: hsl(200, 5%, 66%);
+}
+
+.connect-icon {
+  flex-grow: 1;
+}
+
+.connect-button {
+  flex-grow: 5;
+  margin-right: 1.313rem;
 }
 
 .full-width-button {
-  width: 100%;
-}
-
-.donate-container {
-  margin-bottom: 5.25rem;
-  display: flex;
   width: 100%;
 }
 
@@ -171,8 +191,15 @@
   margin-bottom: 1.313rem;
 }
 
+.donate-container {
+  margin-bottom: 5.25rem;
+  display: flex;
+  width: 100%;
+}
+
 .donate-input {
   flex-grow: 2;
+  margin-right: 1.313rem;
 }
 
 .donate-button {
@@ -191,7 +218,7 @@
   font-size: 1.25rem;
   border-radius: 2px;
   padding: 0.5rem 1rem;
-  color: var(--gray-100);
+  color: var(--gray-200);
   background-color: var(--main-color);
   box-shadow: 2px 2px 4px 0 var(--gray-500);
   cursor: not-allowed;

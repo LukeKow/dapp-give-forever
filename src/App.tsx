@@ -1,4 +1,5 @@
 import { ethers } from '../node_modules/ethers/';
+import CloudSyncIcon from '@mui/icons-material/CloudSync';
 
 import contractABI from './GiveForeverABI.json';
 import { GiveForeverContract } from './types';
@@ -65,14 +66,25 @@ function App() {
           <span className='description'>A perpetual vault for charity donation</span>
         </h1>
 
-        <div className='button-container connect-button-container'>
+        <div className='button-container connect-container'>
           <button
-            className={`button-secondary button full-width-button ${isLoading ? 'button-disabled' : ''}`}
+            className={`button-secondary button full-width-button connect-button ${isLoading ? 'button-disabled' : ''}`}
             onClick={connect}
             disabled={isLoading}
           >
             Connect
           </button>
+          <div className='connect-icon-wrapper'>
+            <CloudSyncIcon
+              className='connect-icon'
+              sx={{ color: contract && !isLoading ? '#53a548' : 'hsl(200, 5%, 66%)' }}
+            />
+            <p
+              className={`icon-text ${contract && !isLoading ? 'icon-text-connected' : 'icon-text-disconnected'}`}
+            >
+              {contract && !isLoading ? "connected" : "disconnected"}
+            </p>
+          </div>
         </div>
         <div className='donate-container'>
           <input
