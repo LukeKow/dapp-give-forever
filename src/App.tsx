@@ -1,11 +1,12 @@
+import React from 'react';
 import { useState } from 'react';
-import { ethers } from '../node_modules/ethers/';
+import { ethers } from 'ethers';
 import CloudSyncIcon from '@mui/icons-material/CloudSync';
 
 import { GiveForeverContract } from './types';
 
 import './App.css';
-import GiveForever from './contracts/GiveForever.json';
+import giveForeverAbi from './GiveForeverABI.json';
 
 // const contractAddress = '0xADdAf656b0dCf066197156105B8770B2A91d9C31'; // Goerli
 // const walletAddress = '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0'; // from *.sol file 
@@ -19,17 +20,17 @@ function App() {
 
 
   const connect = async () => {
-    if (!walletAddress) return;
+    if (!walletAddress || !window.ethereum) return;
 
     setIsLoading(true);
     try {
-      const provider = new ethers.BrowserProvider(window.ethereum);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
       await provider.send('eth_requestAccounts', []);
       const signer = await provider.getSigner();
       console.log('signer: ', signer);
       const contract = new ethers.Contract(
         walletAddress,
-        GiveForever.abi,
+        giveForeverAbi,
         signer
       ) as GiveForeverContract;
 
@@ -47,7 +48,7 @@ function App() {
   }
 
   const donate = async () => {
-    const weiAmount = ethers.parseEther(userAmount);
+    const weiAmount = ethers.utils.parseEther(userAmount);
     console.log('weiAmount: ', weiAmount);
 
     const tx: any = await contract?.deposit({ value: weiAmount });

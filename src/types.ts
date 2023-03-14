@@ -1,7 +1,7 @@
-import { ethers } from '../node_modules/ethers/';
+import { BigNumber, ethers } from 'ethers';
 
 type DepositPayload = {
-  value: bigint,
+  value: BigNumber,
 }
 
 export type GiveForeverContract = {
