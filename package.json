@@ -25,7 +25,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "hardhat-server": "npx hardhat node",
+    "hardhat-compile": "npx hardhat compile",
+    "hardhat-deploy": "npx hardhat run scripts/deploy.ts --network localhost"
   },
   "eslintConfig": {
     "extends": [
