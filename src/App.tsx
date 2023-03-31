@@ -27,7 +27,6 @@ function App() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       await provider.send('eth_requestAccounts', []);
       const signer = await provider.getSigner();
-      console.log('signer: ', signer);
       const contract = new ethers.Contract(
         walletAddress,
         giveForeverAbi,
@@ -38,23 +37,18 @@ function App() {
 
       const awaitedUserAddress = await signer.getAddress();
       setUserAddress(awaitedUserAddress);
-      console.log('User address: ', awaitedUserAddress);
       setIsLoading(false);
     }
     catch (e) {
-      console.log('Something went wrong... ', e);
       setIsLoading(false);
     }
   }
 
   const donate = async () => {
     const weiAmount = ethers.utils.parseEther(userAmount);
-    console.log('weiAmount: ', weiAmount);
 
     const tx: any = await contract?.deposit({ value: weiAmount });
-    console.log('tx: ', tx);
     const receipt = await tx.wait();
-    console.log('receipt: ', receipt);
   }
 
   const withdraw = async () => {
